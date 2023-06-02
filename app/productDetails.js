@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import products from '../assets/data/products'
 import { Image } from 'expo-image';
 import { FlashList } from "@shopify/flash-list";
+import { AntDesign } from '@expo/vector-icons';
 
 
 const ProductDetails = () => {
@@ -11,6 +12,10 @@ const ProductDetails = () => {
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
     const { width } = useWindowDimensions();
     const [readMore, setReadMore] = useState(false)
+
+    const onCartPressed = () => {
+        console.warn('cart pressed...')
+    }
 
   return (
     <View style={styles.mainContainer}>
@@ -63,6 +68,15 @@ const ProductDetails = () => {
 
 
       {/* Add to cart button */}
+        <Pressable style={({ pressed }) => [
+            styles.cartButtonContainer,
+            { opacity: pressed ? 0.5 : 1 },
+            ]}
+            onPress={onCartPressed}
+        >
+            {/* <AntDesign name="shoppingcart" style={styles.cartButton}/> */}
+            <Text style={styles.cartButton}>add to cart</Text>
+        </Pressable>
 
       {/* Navigation Icon */}
 
@@ -105,7 +119,21 @@ const styles = StyleSheet.create({
     },
     readMore: {
         color: '#007AFF'
-    }
+    },
+    cartButtonContainer: {
+        backgroundColor: 'black',
+        alignItems: 'center',
+        marginHorizontal: 15,
+        borderRadius: 100,
+        paddingVertical: 20,
+    },
+    cartButton: {
+        fontSize: 18,
+        color: 'white',
+        fontWeight: '500',
+        letterSpacing: 2,
+        textTransform: 'uppercase'
+    },
 });
 
 export default ProductDetails
