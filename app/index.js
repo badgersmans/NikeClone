@@ -1,13 +1,12 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import ProductsScreen from "./productList";
-import ProductDetails from "./[productId]";
-import ShoppingCart from "./shoppingCart";
+
 
 export default function Page() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ProductsScreen />
-    </SafeAreaView>
+      <View style={styles.container}>
+        <ProductsScreen />
+      </View>
   );
 }
 
