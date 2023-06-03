@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
       margin: 20,
+      marginBottom: 5,
       // paddingHorizontal: 20,
       flexDirection: "row",
       borderWidth: 1,
