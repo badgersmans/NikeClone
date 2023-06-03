@@ -5,6 +5,7 @@ import { FlashList } from "@shopify/flash-list";
 import AddToCart from '../src/components/AddToCart/AddToCart';
 import { Stack } from "expo-router";
 import { useSelector, useDispatch } from 'react-redux';
+import { cartSlice } from '../src/store/cartSlice';
 
 
 const ProductDetails = () => {
@@ -13,6 +14,11 @@ const ProductDetails = () => {
     const { width } = useWindowDimensions();
     const [readMore, setReadMore] = useState(false);
     const product = useSelector(state => state.products.selectedProduct);
+    const dispatch = useDispatch();
+
+    const onCartPressed = () => {
+        dispatch(cartSlice.actions.addCartItem({product}));
+    }
 
     return (
         <View style={styles.mainContainer}>
@@ -70,7 +76,7 @@ const ProductDetails = () => {
 
 
         {/* Add to cart button */}
-        <AddToCart />
+        <AddToCart buttonPressed={onCartPressed}/>
 
         {/* Navigation Icon */}
 

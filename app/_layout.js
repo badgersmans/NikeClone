@@ -1,6 +1,4 @@
-import { Pressable, Text } from 'react-native'
 import { Stack, useRouter } from "expo-router";
-import { FontAwesome5 } from '@expo/vector-icons';
 import { Provider } from "react-redux";
 import { store } from "../src/store";
 
@@ -20,34 +18,12 @@ export default () => {
                     }
                 }}
             >
-                <Stack.Screen 
+                {/* <Stack.Screen 
                     name="index" 
                     options={{
                         title: 'Store',
-                        headerRight: () => (
-                            <Pressable style={({ pressed }) => [
-                                {flexDirection: 'row', padding: 6},
-                                { opacity: pressed ? 0.5 : 1 },
-                            ]}
-                                onPress={() => router.push('/shoppingCart')}
-                            >
-                                <FontAwesome5 name="shopping-cart" 
-                                    size={18}
-                                    color="black"
-                                />
-                                <Text 
-                                    style={{
-                                        marginLeft: 5,
-                                        fontSize: 18,
-                                        fontWeight: '500'
-                                    }}
-                                >
-                                    5
-                                </Text>
-                            </Pressable>
-                        ),
                     }}
-                />
+                /> */}
 
                 <Stack.Screen 
                     name="[productId]" 

@@ -2,10 +2,12 @@ import { View, Text, StyleSheet} from 'react-native'
 import React from 'react'
 import { FlashList } from "@shopify/flash-list";
 import CartListItem from '../src/components/CartList/CartListItem';
-import cart from '../assets/data/cart';
 import AddToCart from '../src/components/AddToCart/AddToCart';
+import { useSelector } from 'react-redux';
 
 const ShoppingCart = () => {
+
+  const cart = useSelector(state => state.cart.items)
 
   const CartTotals = () => (
     <View style={styles.totalsContainer}>

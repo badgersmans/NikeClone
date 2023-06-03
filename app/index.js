@@ -1,17 +1,8 @@
-import { StyleSheet, View } from "react-native";
-import ProductsScreen from "./productList";
-
+import { Redirect } from "expo-router";
 
 export default function Page() {
   return (
-      <View style={styles.container}>
-        <ProductsScreen />
-      </View>
+    <Redirect href={`/productScreen`}/>
   );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+};
