@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import products from '../assets/data/products'
 import { Image } from 'expo-image';
 import { FlashList } from "@shopify/flash-list";
-import { AntDesign } from '@expo/vector-icons';
 
 
 const ProductDetails = () => {
