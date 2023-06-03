@@ -4,17 +4,26 @@ import products from '../assets/data/products'
 import { Image } from 'expo-image';
 import { FlashList } from "@shopify/flash-list";
 import AddToCart from '../src/components/AddToCart/AddToCart';
-
+import { useRouter, useSearchParams } from 'expo-router'
+import { Stack } from "expo-router";
 
 const ProductDetails = () => {
     const product = products[0];
     const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
     const { width } = useWindowDimensions();
-    const [readMore, setReadMore] = useState(false)
+    const [readMore, setReadMore] = useState(false);
+    // const { id, product } = useSearchParams();
+    const params = useSearchParams();
+    console.log(JSON.stringify(params.product));
 
   return (
     <View style={styles.mainContainer}>
+        {/* <Stack.Screen 
+            options={{
+            title: `${id}`,
+            }}
+        /> */}
         <ScrollView showsVerticalScrollIndicator={false}>
             {/* Image Carousel */}
             <FlashList
