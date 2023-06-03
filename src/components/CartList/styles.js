@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     contentContainer: {
       flex: 1,
       marginLeft: 10,
+      marginTop: 10,
       // backgroundColor: 'red',
     },
     image: {
