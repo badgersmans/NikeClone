@@ -13,12 +13,11 @@ const ProductDetails = () => {
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
     const { width } = useWindowDimensions();
     const [readMore, setReadMore] = useState(false);
-    // const { id, product } = useSearchParams();
-    const params = useSearchParams();
-    console.log(JSON.stringify(params.product));
+    const { productId } = useSearchParams();
+    console.log(productId)
 
-  return (
-    <View style={styles.mainContainer}>
+    return (
+        <View style={styles.mainContainer}>
         {/* <Stack.Screen 
             options={{
             title: `${id}`,

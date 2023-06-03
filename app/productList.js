@@ -15,7 +15,7 @@ const ProductsScreen = () => {
     <FlashList
         data={products}
         renderItem={({ item }) => (
-          <Link style={styles.imageContainer} href={{pathname: `/${item.id}`, params: { product: item }}} >
+          <Link style={styles.imageContainer} href={{pathname: `/${item.id}`, params: { productId: item.id }}} >
             <Image
               style={styles.image}
               source={item.image}

@@ -12,9 +12,9 @@ export default () => {
                 // headerTitleStyle: {
                 //     fontWeight: 'bold'
                 // },
-                // contentStyle: {
-                //     backgroundColor: 'white'
-                // }
+                contentStyle: {
+                    backgroundColor: 'white'
+                }
             }}
         >
             <Stack.Screen 
@@ -61,6 +61,7 @@ export default () => {
                 name="shoppingCart" 
                 options={{
                     presentation: 'modal',
+                    title: 'Your Cart'
                     // headerStyle: { backgroundColor: 'pink' },
                     // headerTintColor: 'white',
                     // headerTitleStyle: {

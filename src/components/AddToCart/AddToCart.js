@@ -1,4 +1,4 @@
-import { Text, Pressable } from 'react-native'
+import { Text, Pressable, SafeAreaView } from 'react-native'
 import React from 'react'
 import styles from './styles'
 
@@ -8,15 +8,17 @@ const AddToCart = ({text}) => {
     }
 
   return (
-    <Pressable style={({ pressed }) => [
-        styles.cartButtonContainer,
-        { opacity: pressed ? 0.5 : 1 },
-        ]}
-        onPress={onCartPressed}
-    >
-        {/* <AntDesign name="shoppingcart" style={styles.cartButton}/> */}
-        <Text style={styles.cartButton}>{text}</Text>
-    </Pressable>
+    <SafeAreaView>
+        <Pressable style={({ pressed }) => [
+            styles.cartButtonContainer,
+            { opacity: pressed ? 0.5 : 1 },
+            ]}
+            onPress={onCartPressed}
+        >
+            {/* <AntDesign name="shoppingcart" style={styles.cartButton}/> */}
+            <Text style={styles.cartButton}>{text}</Text>
+        </Pressable>
+    </SafeAreaView>
   )
 };
 
