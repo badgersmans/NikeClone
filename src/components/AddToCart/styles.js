@@ -4,12 +4,12 @@ const styles = StyleSheet.create({
     cartButtonContainer: {
         backgroundColor: 'black',
         alignItems: 'center',
-        marginHorizontal: 15,
+        marginHorizontal: 40,
         borderRadius: 100,
-        paddingVertical: 20,
+        paddingVertical: 18,
     },
     cartButton: {
-        fontSize: 18,
+        fontSize: 16,
         color: 'white',
         fontWeight: '500',
         letterSpacing: 2,
