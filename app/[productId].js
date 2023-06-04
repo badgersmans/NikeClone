@@ -1,9 +1,8 @@
 import { View, Text, StyleSheet, useWindowDimensions, Pressable, ScrollView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Image } from 'expo-image';
 import { FlashList } from "@shopify/flash-list";
 import AddToCart from '../src/components/AddToCart/AddToCart';
-import { Stack } from "expo-router";
 import { useSelector, useDispatch } from 'react-redux';
 import { cartSlice } from '../src/store/cartSlice';
 

@@ -19,7 +19,6 @@ const ProductsScreen = () => {
   const cartCount = useSelector(selectNumberOfItems);
   const router = useRouter();
 
-
   return (
     <>
     <Stack.Screen 

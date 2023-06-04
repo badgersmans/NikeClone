@@ -4,31 +4,42 @@ import { FlashList } from "@shopify/flash-list";
 import CartListItem from '../src/components/CartList/CartListItem';
 import AddToCart from '../src/components/AddToCart/AddToCart';
 import { useSelector } from 'react-redux';
+import { selectDeliveryPrice, selectSubtotal, selectTotal } from '../src/store/cartSlice';
 
 const ShoppingCart = () => {
-
+  
   const cart = useSelector(state => state.cart.items)
-
+  const deliveryFee = useSelector(selectDeliveryPrice);
+  const subtotal = useSelector(selectSubtotal);
+  const total = useSelector(selectTotal);
+  
   const CartTotals = () => (
     <View style={styles.totalsContainer}>
       <View style={styles.row}>
         <Text style={styles.subtotal}>Subtotal</Text>
-        <Text style={styles.price}>RM 4000</Text>
+        <Text style={styles.price}>{`RM ${subtotal}`}</Text>
       </View>
 
       <View style={styles.row}>
         <Text style={styles.subtotal}>Delivery</Text>
-        <Text style={styles.price}>RM 5</Text>
+        <Text style={styles.price}>{deliveryFee === 0 ? `FREE` : `RM ${deliveryFee}`}</Text>
       </View>
 
       <View style={styles.row}>
         <Text style={styles.textBold}>Total</Text>
-        <Text style={styles.textBold}>RM 4005</Text>
+        <Text style={styles.textBold}>RM {total}</Text>
       </View>
-
     </View>
   );
 
+  const EmptyCart = () => (
+    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+      <Text style={styles.emptyCartText}>Your cart is empty</Text>
+    </View>
+  );
+
+  if(cart.length === 0) return <EmptyCart />
+  
   return (
     <>
       <FlashList
@@ -73,6 +84,10 @@ const styles = StyleSheet.create({
   textBold: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  emptyCartText: {
+    fontSize: 26,
+    fontWeight: '300'
   },
 });
 
