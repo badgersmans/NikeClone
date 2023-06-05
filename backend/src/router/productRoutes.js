@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:productId', async (req, res) => {
+    // console.log(`query product with ID: ${req.params.productId}`)
     try {
         const {productId} = req.params;
         const product = await getProduct(productId);

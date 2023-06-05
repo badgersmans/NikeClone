@@ -15,17 +15,18 @@ const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 
 const ProductsScreen = () => {
-  const products = useSelector(state => state.products.products);
+  // const products = useSelector(state => state.products.products);
+  const { data, isLoading, error } = useGetAllProductsQuery();
+  const products = data;
   const dispatch = useDispatch();
   const cartCount = useSelector(selectNumberOfItems);
   const router = useRouter();
 
-  const { data, isLoading, error } = useGetAllProductsQuery();
 
   if(isLoading) return <ActivityIndicator />
   if(error) return <Text>Error loading products</Text>
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
@@ -62,9 +63,10 @@ const ProductsScreen = () => {
         renderItem={({ item }) => (
           <Link 
             style={styles.imageContainer} 
-            href={{pathname: `/${item.id}`}}
+            href={{pathname: `/${item.id}`, params: { id: item._id }}}
             onPress={() => {
-              dispatch(productsSlice.actions.setSelectedProduct(item.id))
+              // dispatch(productsSlice.actions.setSelectedProduct(item.id))
+
             }}
           >
             <Image

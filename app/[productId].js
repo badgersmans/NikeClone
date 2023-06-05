@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet, useWindowDimensions, Pressable, ScrollView } from 'react-native'
-import React, { useState, useEffect } from 'react'
+import { View, Text, StyleSheet, useWindowDimensions, Pressable, ScrollView, ActivityIndicator } from 'react-native'
+import React, { useState } from 'react'
 import { Image } from 'expo-image';
 import { FlashList } from "@shopify/flash-list";
 import AddToCart from '../src/components/AddToCart/AddToCart';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartSlice } from '../src/store/cartSlice';
+import { useSearchParams } from 'expo-router';
+import { useGetProductQuery } from '../src/store/apiSlice'
 
 
 const ProductDetails = () => {
@@ -12,12 +14,20 @@ const ProductDetails = () => {
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
     const { width } = useWindowDimensions();
     const [readMore, setReadMore] = useState(false);
-    const product = useSelector(state => state.products.selectedProduct);
+    // const product = useSelector(state => state.products.selectedProduct);
     const dispatch = useDispatch();
+    const { id } = useSearchParams();
+    const { data: product, isLoading, error } = useGetProductQuery(id);
+
+    // console.log(id);
 
     const onCartPressed = () => {
         dispatch(cartSlice.actions.addCartItem({product}));
     }
+
+    // if(!product) return null;
+    if(isLoading) return <ActivityIndicator />
+    if(error) return <Text>Error loading product</Text>
 
     return (
         <View style={styles.mainContainer}>
