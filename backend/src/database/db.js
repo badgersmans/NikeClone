@@ -6,7 +6,9 @@ const client = new MongoClient(uri);
 
 const database = client.db('nikeNJD');
 const products = database.collection('products');
+const orders = database.collection('orders');
 
 module.exports = {
-    products
+    products,
+    orders
 }
