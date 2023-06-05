@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Image } from 'expo-image';
 import { FlashList } from "@shopify/flash-list";
 import AddToCart from '../src/components/AddToCart/AddToCart';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { cartSlice } from '../src/store/cartSlice';
 import { useSearchParams } from 'expo-router';
 import { useGetProductQuery } from '../src/store/apiSlice'

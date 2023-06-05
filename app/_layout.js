@@ -50,12 +50,13 @@ export default () => {
                     }}
                 />
 
-                {/* <Stack.Screen 
-                    name="home"
+                <Stack.Screen 
+                    name="trackOrder"
                     options={{
-                        headerShown: false
+                        title: 'Track Order'
+                        // headerShown: false
                     }}
-                /> */}
+                />
             </Stack>
         </Provider>
     )

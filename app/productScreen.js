@@ -4,10 +4,10 @@ import { FlashList } from "@shopify/flash-list";
 import { Image } from 'expo-image';
 import { Link } from 'expo-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { productsSlice } from '../src/store/productsSlice';
+// import { productsSlice } from '../src/store/productsSlice';
 import { selectNumberOfItems } from '../src/store/cartSlice';
 import {Stack} from 'expo-router';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useGetAllProductsQuery } from '../src/store/apiSlice'
 
@@ -33,6 +33,16 @@ const ProductsScreen = () => {
     <Stack.Screen 
       options={{
         headerTitle: 'Store',
+        headerLeft: () => (
+          <Pressable style={({ pressed }) => [
+              {},
+              { opacity: pressed ? 0.5 : 1 },
+          ]}
+              onPress={() => router.push('/trackOrder')}
+          >
+              <MaterialCommunityIcons name="truck-delivery" size={30} color="black" />
+          </Pressable>
+      ),
         headerRight: () => (
           <Pressable style={({ pressed }) => [
               {flexDirection: 'row', padding: 6},
