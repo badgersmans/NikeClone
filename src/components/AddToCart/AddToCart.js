@@ -1,8 +1,8 @@
-import { Text, Pressable, SafeAreaView } from 'react-native'
+import { Text, Pressable, SafeAreaView, ActivityIndicator } from 'react-native'
 import React from 'react'
 import styles from './styles'
 
-const AddToCart = ({text, buttonPressed}) => {
+const AddToCart = ({text, buttonPressed, isLoading}) => {
 
   return (
     <SafeAreaView>
@@ -13,7 +13,12 @@ const AddToCart = ({text, buttonPressed}) => {
             onPress={buttonPressed}
         >
             {/* <AntDesign name="shoppingcart" style={styles.cartButton}/> */}
-            <Text style={styles.cartButton}>{text}</Text>
+            {
+            isLoading ? <ActivityIndicator />
+            : (
+              <Text style={styles.cartButton}>{text}</Text>
+            )
+            }
         </Pressable>
     </SafeAreaView>
   )
@@ -21,6 +26,7 @@ const AddToCart = ({text, buttonPressed}) => {
 
 AddToCart.defaultProps = {
     text: "add to cart",
+    isLoading: false,
 };
 
 export default AddToCart

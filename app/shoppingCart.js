@@ -1,18 +1,21 @@
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text, StyleSheet, Alert} from 'react-native'
 import React from 'react'
 import { FlashList } from "@shopify/flash-list";
 import CartListItem from '../src/components/CartList/CartListItem';
 import AddToCart from '../src/components/AddToCart/AddToCart';
-import { useSelector } from 'react-redux';
-import { selectDeliveryPrice, selectSubtotal, selectTotal } from '../src/store/cartSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectDeliveryPrice, selectSubtotal, selectTotal, cartSlice } from '../src/store/cartSlice';
+import { useCreateOrderMutation } from '../src/store/apiSlice'
 
 const ShoppingCart = () => {
   
+  const dispatch = useDispatch();
   const cart = useSelector(state => state.cart.items)
   const deliveryFee = useSelector(selectDeliveryPrice);
   const subtotal = useSelector(selectSubtotal);
   const total = useSelector(selectTotal);
-  
+  const [createOrder, {data, isLoading, error}] = useCreateOrderMutation();
+  // console.log(data)
   const CartTotals = () => (
     <View style={styles.totalsContainer}>
       <View style={styles.row}>
@@ -38,6 +41,32 @@ const ShoppingCart = () => {
     </View>
   );
 
+  const onCheckout = async () => {
+    const result = await createOrder({
+      items: cart,
+      subtotal,
+      deliveryFee,
+      total,
+      customer: {
+        "name": "Shawn Law",
+        "email": "shawnlaw6669@gmail.com",
+        "address": "bandar sri damansara"
+      },
+    });
+
+    // console.log(result)
+    if(result) {
+      Alert.alert(
+        'Order has been made',
+        `Your order tracking number is: ${result.data.orderRef}`,
+        [
+          {text: 'OK', onPress: () => dispatch(cartSlice.actions.clearCart())},
+        ]
+      )
+    }
+  };
+
+  if(error) return <Text>Error creating order</Text>
   if(cart.length === 0) return <EmptyCart />
   
   return (
@@ -52,7 +81,7 @@ const ShoppingCart = () => {
         ListFooterComponent={<CartTotals />}
       />
 
-      <AddToCart text={'checkout'}/>
+      <AddToCart text={'checkout'} buttonPressed={onCheckout} isLoading={isLoading}/>
     </>
   )
 };

@@ -14,7 +14,7 @@ export const cartSlice = createSlice({
             const newItem = action.payload.product;
             // console.log(JSON.stringify(newItem));
             // console.log(JSON.stringify(state.items));
-            const existingItem = state.items.find((i) => i.item.id === newItem.id);
+            const existingItem = state.items.find((i) => i.item._id === newItem._id);
 
             if(existingItem) {
                 existingItem.quantity += 1;
@@ -27,7 +27,7 @@ export const cartSlice = createSlice({
         },
         changeQuantity: (state, action) => {
             const { productId, amount } = action.payload;
-            const cartItem = state.items.find(i => i.item.id === productId)
+            const cartItem = state.items.find(i => i.item._id === productId)
 
             if(cartItem) {
                 cartItem.quantity += amount;
@@ -37,6 +37,9 @@ export const cartSlice = createSlice({
                 state.items = state.items.filter(i => i !== cartItem);
             }
         },
+        clearCart: (state) => {
+            state.items = []
+        }
     },
 });
 
