@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Pressable } from 'react-native';
+import { StyleSheet, Text, Pressable, ActivityIndicator } from 'react-native';
 import React from 'react'
 import { FlashList } from "@shopify/flash-list";
 import { Image } from 'expo-image';
@@ -9,6 +9,7 @@ import { selectNumberOfItems } from '../src/store/cartSlice';
 import {Stack} from 'expo-router';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useGetAllProductsQuery } from '../src/store/apiSlice'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
@@ -18,6 +19,13 @@ const ProductsScreen = () => {
   const dispatch = useDispatch();
   const cartCount = useSelector(selectNumberOfItems);
   const router = useRouter();
+
+  const { data, isLoading, error } = useGetAllProductsQuery();
+
+  if(isLoading) return <ActivityIndicator />
+  if(error) return <Text>Error loading products</Text>
+
+  console.log(data);
 
   return (
     <>
